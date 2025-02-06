@@ -1,0 +1,37 @@
+# IDEs and Editors
+.vscode/
+.idea/
+
+# Virtual environment
+bin/
+lib/
+lib64/
+include/
+pyvenv.cfg
+
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Jupyter Notebook files
+.ipynb_checkpoints/
+jupyter/
+
+# IDE files
+.idea/
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Logs and temporary files
+*.log
+*.bak
+
+# Environment files
+.env
+
+# Other unnecessary files
+*.swp
+
