@@ -9,7 +9,7 @@ with open("model.pkl", "rb") as file:
     model = pickle.load(file)
 
 # Streamlit app
-st.title("Hotel Price Prediction App")
+st.title("Hotel Rating Prediction App")
 
 # Define the mappings for categorical features
 price_range_map = {4: 4, 3: 3, 2: 2, 1: 1}  # Assuming 4, 3, 2, 1 represent the range directly
@@ -68,5 +68,5 @@ if st.button("Predict"):
         "Votes": [votes_value]
     })
     prediction = model.predict(input_data)
-    st.success(f"The predicted price is: {prediction[0]:.1f}")
+    st.success(f"The predicted rating is: {prediction[0]:.1f}")
 
