@@ -1,13 +1,14 @@
 # IDEs and Editors
 .vscode/
 .idea/
-
 # Virtual environment
 bin/
 lib/
 lib64/
 include/
 pyvenv.cfg
+share/
+etc/
 
 # Python bytecode files
 *.pyc
@@ -34,4 +35,6 @@ jupyter/
 
 # Other unnecessary files
 *.swp
+
+
 
