@@ -3,12 +3,12 @@
 .idea/
 # Virtual environment
 bin/
+etc/
+include/
 lib/
 lib64/
-include/
-pyvenv.cfg
 share/
-etc/
+pyvenv.cfg
 
 # Python bytecode files
 *.pyc
