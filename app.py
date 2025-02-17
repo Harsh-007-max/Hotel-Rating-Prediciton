@@ -15,8 +15,8 @@ nltk.download('stopwords')
 
 # Load the saved CPU model and transformers
 model = joblib.load('model.pkl')
-tfidf_vectorizer = joblib.load('tfidf_vectorizer_cpu.joblib')
-onehot_encoder = joblib.load('onehot_encoder_cpu.joblib')
+tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
+onehot_encoder = joblib.load('onehot_encoder.pkl')
 
 # Initialize NLP tools
 lemmatizer = WordNetLemmatizer()
@@ -42,17 +42,26 @@ st.write("Enter the hotel details to predict its rating:")
 
 # Use a form to prevent processing on every change
 with st.form(key="prediction_form"):
-    attractions = st.text_area("Attractions", placeholder="Enter details about nearby attractions...")
-    description = st.text_area("Description", placeholder="Enter a brief description of the hotel...")
-    facilities = st.text_area("Hotel Facilities", placeholder="Enter the hotel facilities available...")
-    county_name = st.text_input("County Name", placeholder="Enter the county name...")
-    city_name = st.text_input("City Name", placeholder="Enter the city name...")
+    hotel_name = st.text_input("Hotel Name", placeholder="Enter the hotel name")
+    address= st.text_area("Address", placeholder="Enter address")
+    website_url= st.text_area("Hotel website url (don't have one leave empty)", placeholder="Enter Hotel website url")
+    attractions = st.text_area("Attractions", placeholder="Enter details about nearby attractions")
+    description = st.text_area("Description", placeholder="Enter a brief description of the hotel")
+    facilities = st.text_area("Hotel Facilities", placeholder="Enter the hotel facilities available")
+    county_name = st.text_input("County Name", placeholder="Enter the county name")
+    city_name = st.text_input("City Name", placeholder="Enter the city name")
     
     submit_button = st.form_submit_button(label="Predict Hotel Rating")
 
 if submit_button:
     # Check for empty fields
     missing_fields = []
+    if not hotel_name.strip():
+        missing_fields.append("Hotel Name")
+    if not address.strip():
+        missing_fields.append("Address")
+    if not website_url.strip():
+        website_url = "NA"
     if not attractions.strip():
         missing_fields.append("Attractions")
     if not description.strip():
@@ -84,6 +93,9 @@ if submit_button:
     else:
         # Create a DataFrame for input (ensure column names match training)
         input_df = pd.DataFrame({
+            'HotelName': [hotel_name],
+            'Address': [address],
+            'Website': [website_url],
             'Attractions': [attractions],
             'Description': [description],
             'HotelFacilities': [facilities],
